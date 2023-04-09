@@ -30,11 +30,11 @@ class TestSimpleBSAratorTextAdapter {
 
 	@ParameterizedTest
 	@ValueSource(strings = { "Hello", "hello", "HELLO", "This is not okay", "(&; " })
-	void adapt_TextIsNotEmpty_ReturnsExpectedResultOfSameLength(String txt) {
-		assertThat(objUT.adapt(txt), isExpectedOutput(txt));
+	void adapt_TextIsNotEmpty_ReturnsCapitalizedStringWithRandomUpperLowerCases(String txt) {
+		assertThat(objUT.adapt(txt), isSameLettersWithCapitalFirstLetterAndRandomUpperLowerCasesForTheRest(txt));
 	}
 
-	private BaseMatcher<String> isExpectedOutput(String string) {
+	private BaseMatcher<String> isSameLettersWithCapitalFirstLetterAndRandomUpperLowerCasesForTheRest(String string) {
 		return new DiagnosingMatcher<String>() {
 
 			@Override
